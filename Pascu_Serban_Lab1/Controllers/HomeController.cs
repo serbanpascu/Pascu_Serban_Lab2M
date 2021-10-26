@@ -6,17 +6,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Pascu_Serban_Lab1.Data;
+using Pascu_Serban_Lab1.Models.LibraryViewModels;
+using Pascu_Serban_Lab1.Models.CustomerViewModels;
 
 namespace Pascu_Serban_Lab1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly LibraryContext _context;
+        public HomeController(LibraryContext context)
+        {
+            _context = context;
+        }
+
+      /*  private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+      */
 
         public IActionResult Index()
         {
@@ -32,6 +43,32 @@ namespace Pascu_Serban_Lab1.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<ActionResult> Statistics()
+        {
+            IQueryable<OrderGroup> data =
+            from order in _context.Orders
+            group order by order.OrderDate into dateGroup
+            select new OrderGroup()
+            {
+                OrderDate = dateGroup.Key,
+                BookCount = dateGroup.Count()
+            };
+            return View(await data.AsNoTracking().ToListAsync());
+        }
+
+        public async Task<ActionResult> CustomerStatistics()
+        {
+            IQueryable<CustomerGroup> data =
+                from customer in _context.Customers
+                group customer by customer.Name into customerGroup
+                select new CustomerGroup()
+                {
+                    CustomerName = customerGroup.Key,
+                    BookCount = customerGroup.Count()
+                };
+            return View(await data.AsNoTracking().ToListAsync());
         }
     }
 }
