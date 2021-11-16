@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Pascu_Serban_Lab1.Data;
 using Pascu_Serban_Lab1.Models.LibraryViewModels;
-using Pascu_Serban_Lab1.Models.CustomerViewModels;
 
 namespace Pascu_Serban_Lab1.Controllers
 {
@@ -58,17 +57,6 @@ namespace Pascu_Serban_Lab1.Controllers
             return View(await data.AsNoTracking().ToListAsync());
         }
 
-        public async Task<ActionResult> CustomerStatistics()
-        {
-            IQueryable<CustomerGroup> data =
-                from customer in _context.Customers
-                group customer by customer.Name into customerGroup
-                select new CustomerGroup()
-                {
-                    CustomerName = customerGroup.Key,
-                    BookCount = customerGroup.Count()
-                };
-            return View(await data.AsNoTracking().ToListAsync());
-        }
+
     }
 }
