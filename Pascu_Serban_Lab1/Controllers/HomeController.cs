@@ -57,6 +57,9 @@ namespace Pascu_Serban_Lab1.Controllers
             return View(await data.AsNoTracking().ToListAsync());
         }
 
-
+        public IActionResult Chat()
+        {
+            return View();
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pascu_Serban_Lab1.Data;
 using Microsoft.EntityFrameworkCore;
+using Pascu_Serban_Lab1.Hubs;
 
 namespace Pascu_Serban_Lab1
 {
@@ -28,6 +29,7 @@ namespace Pascu_Serban_Lab1
             services.AddControllersWithViews();
             services.AddDbContext<LibraryContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +57,7 @@ namespace Pascu_Serban_Lab1
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }
