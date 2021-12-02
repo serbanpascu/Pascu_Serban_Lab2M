@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Pascu_Serban_Lab1.Data;
 using Microsoft.EntityFrameworkCore;
 using Pascu_Serban_Lab1.Hubs;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pascu_Serban_Lab1
 {
@@ -30,6 +31,10 @@ namespace Pascu_Serban_Lab1
             services.AddDbContext<LibraryContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSignalR();
+            services.Configure<IdentityOptions>(options => {
+                options.Lockout.DefaultLockoutTimeSpan =
+                TimeSpan.FromMinutes(1); options.Lockout.MaxFailedAccessAttempts = 3; options.Lockout.AllowedForNewUsers = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +55,7 @@ namespace Pascu_Serban_Lab1
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -58,6 +64,7 @@ namespace Pascu_Serban_Lab1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapRazorPages();
             });
         }
     }
