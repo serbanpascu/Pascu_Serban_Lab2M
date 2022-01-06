@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pascu_Serban_Lab1", "Pascu_
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C01F7FA-AA4E-47CD-95A6-FDA520AE1AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryModel", "LibraryModel\LibraryModel.csproj", "{A09E5168-2F1F-4D72-AFB7-9A0DAC5FD632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryModel", "LibraryModel\LibraryModel.csproj", "{A09E5168-2F1F-4D72-AFB7-9A0DAC5FD632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWebAPI", "LibraryWebAPI\LibraryWebAPI.csproj", "{C9387989-F3FC-4B55-9219-43B54F4B4BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryWebAPI", "LibraryWebAPI\LibraryWebAPI.csproj", "{C9387989-F3FC-4B55-9219-43B54F4B4BB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCustomersService", "GrpcCustomersService\GrpcCustomersService.csproj", "{7701B994-4D1C-436B-87D8-CD641C40908F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{C9387989-F3FC-4B55-9219-43B54F4B4BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9387989-F3FC-4B55-9219-43B54F4B4BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9387989-F3FC-4B55-9219-43B54F4B4BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7701B994-4D1C-436B-87D8-CD641C40908F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7701B994-4D1C-436B-87D8-CD641C40908F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7701B994-4D1C-436B-87D8-CD641C40908F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7701B994-4D1C-436B-87D8-CD641C40908F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
